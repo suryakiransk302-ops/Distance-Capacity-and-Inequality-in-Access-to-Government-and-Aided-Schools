@@ -38,6 +38,24 @@ India is the big data part; **Kerala** is a detailed case study with the most co
 
 The full report is in [`REPORT/School_Access_Report.pdf`](REPORT/School_Access_Report.pdf).
 
+## Interactive dashboard
+
+Two versions with the same data and the same numbers:
+
+- **Streamlit app** (Python): pages *Explore map*, *Key findings* and *About the data*; filters for India / Kerala,
+  state, area level, school level and measure; click an area or search for it to read what was found there.
+
+  ```bash
+  pip install -r streamlit_app/requirements.txt
+  streamlit run streamlit_app/app.py
+  ```
+
+  It can also be deployed on Streamlit Community Cloud (main file: `streamlit_app/app.py`).
+- **Offline HTML file:** `FINAL COMPLETE DATASET/results/dashboard/school_access_dashboard.html`: download it and open
+  it in any browser; no internet needed.
+
+Both read the results written by notebook 29 (`school_access_dashboard_data.json`).
+
 ## Method in brief
 
 1. **Demand:** WorldPop 2026 population at 100 m, split into school ages, times the share of pupils in Government + Aided schools (UDISE).
@@ -59,7 +77,8 @@ FINAL COMPLETE DATASET/
   schools/                    verified Kerala school layer (11,768 schools) and the Kerala capacity file
   results/schools/            result tables: by state, district, sub-district, Kerala local body; inequality; patterns
   results/benchmarks/         benchmark results and charts
-  results/dashboard/          school_access_dashboard.html (open in any browser, works offline)
+  results/dashboard/          school_access_dashboard.html (offline) and the dashboard data (JSON)
+streamlit_app/                Streamlit version of the dashboard (app.py, requirements.txt)
 REPORT/                       final report (PDF) and its figures
 data/                         not included: raw downloads and the data lake are created by the notebooks
 requirements.txt
@@ -93,7 +112,7 @@ requirements.txt
 | 26 | `26_school_access_india` | **D5** E2SFCA and nearest school, India (state by state, restartable) |
 | 27 | `27_school_inequality` | **D6** Area results, data-coverage flags, Gini and Theil |
 | 28 | `28_school_patterns` | **D7** Gi\*, K-Means, FP-Growth, Kerala priority areas |
-| 29 | `29_school_dashboard` | **D8** Offline map dashboard |
+| 29 | `29_school_dashboard` | **D8** Offline map dashboard and the data for the Streamlit app |
 | 30 | `30_benchmarks` | **D10** Spark vs plain Python, data size and cores |
 | 31 | `31_report_figures` | Figures of the report |
 

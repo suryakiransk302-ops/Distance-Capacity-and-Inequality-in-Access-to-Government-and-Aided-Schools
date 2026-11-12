@@ -1,0 +1,5 @@
+# Streamlit version of the dashboard
+streamlit==1.66.1
+pydeck==0.9.3
+altair
+pandas
