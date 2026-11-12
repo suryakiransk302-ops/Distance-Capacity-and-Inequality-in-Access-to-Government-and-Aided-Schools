@@ -2,6 +2,10 @@
 
 **A spatial big data analysis of India and Kerala**
 
+[![Open the dashboard](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ttryxitsqtwbskb3xtucx9.streamlit.app)
+
+**Live dashboard:** https://ttryxitsqtwbskb3xtucx9.streamlit.app
+
 MSc Data Science with Geoinformatics · Spatial Big Data Analytics project · Digital University Kerala
 Author: **Suryakiran M S** (Roll No. 253311) · Submitted to: Dr. Manoj Kumar T.K. · November 2026
 
@@ -39,6 +43,8 @@ India is the big data part; **Kerala** is a detailed case study with the most co
 The full report is in [`REPORT/School_Access_Report.pdf`](REPORT/School_Access_Report.pdf).
 
 ## Interactive dashboard (Streamlit)
+
+**Open it online:** https://ttryxitsqtwbskb3xtucx9.streamlit.app
 
 Pages *Explore map*, *Key findings* and *About the data*; filters for India / Kerala, state, area level, school level
 and measure; click an area or search for it to read what was found there.
