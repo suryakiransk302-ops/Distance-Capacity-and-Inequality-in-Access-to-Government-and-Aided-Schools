@@ -1,0 +1,20 @@
+# Python 3.12 · Java 17 is needed for Spark
+pyspark==3.5.9
+apache-sedona==1.9.1
+pyarrow
+duckdb
+pandas
+numpy
+scipy==1.18.1
+geopandas
+shapely
+pyogrio
+pyproj
+rasterio
+matplotlib
+requests
+rapidfuzz
+pymupdf
+psutil
+nbformat
+jupyterlab

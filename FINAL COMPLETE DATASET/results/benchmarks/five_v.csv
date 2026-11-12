@@ -1,0 +1,6 @@
+V,this project
+Volume,"WorldPop India grid 35,040 x 34,507 = 1.21 bn cells; 140,086,378 populated 100 m cells; 1,070,017 schools; E2SFCA result for India 17.7 GB (about 5 h on Spark, notebook 26)"
+Variety,"Rasters (WorldPop GeoTIFF), points (UDISE CSV, Sametham web pages, OSM JSON), polygons (geoBoundaries GeoJSON, OSM local bodies), PDFs (HSCAP/VHSCAP seats), stored as Parquet / GeoParquet"
+Velocity,"Low: school locations and enrolment change yearly, so the analysis is batch (no streaming)"
+Veracity,"107 data-quality checks (notebook 18), placeholder and outlier location fixes, coverage flags for incomplete UDISE lists, conservation check of E2SFCA in every state"
+Value,"Children beyond the distance norm and places per child for every area; inequality (Gini, Theil); hotspots, area types, priority areas; an offline decision-support dashboard"

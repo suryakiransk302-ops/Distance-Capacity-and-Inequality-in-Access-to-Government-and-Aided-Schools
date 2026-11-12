@@ -1,0 +1,28 @@
+# data created by the notebooks (raw downloads, data lake, temporary files)
+data/raw/
+data/interim/
+data/lake/
+data/tmp/
+
+# large or out-of-scope layers (rebuilt by the notebooks)
+FINAL COMPLETE DATASET/schools/india_schools_govt_aided.csv
+FINAL COMPLETE DATASET/health/
+FINAL COMPLETE DATASET/fire_stations/
+FINAL COMPLETE DATASET/results/dashboard/backup/
+
+# downloaded tools (notebooks 15 and 29)
+tools/
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# secrets and system files
+.env
+*.key
+.DS_Store
+Thumbs.db
+desktop.ini
