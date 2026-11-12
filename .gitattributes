@@ -1,5 +1,5 @@
 # GitHub language statistics
-# the dashboard is one generated HTML file that holds the map data; leave it out of the language count
-*.html linguist-generated=true
+# the dashboard is one generated HTML file that holds the map data: not counted as code
+*.html linguist-generated=true linguist-vendored=true linguist-detectable=false
 # the notebooks are Python code
-*.ipynb linguist-language=Python
+*.ipynb linguist-language=Python linguist-detectable=true
