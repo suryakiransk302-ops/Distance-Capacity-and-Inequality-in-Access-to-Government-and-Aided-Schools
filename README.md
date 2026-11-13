@@ -7,7 +7,7 @@
 **Live dashboard:** https://ttryxitsqtwbskb3xtucx9.streamlit.app
 
 MSc Data Science with Geoinformatics · Spatial Big Data Analytics project · Digital University Kerala
-Author: **Suryakiran M S** (Roll No. 253311) · Submitted to: Dr. Manoj Kumar T.K. · November 2026
+Author: **Suryakiran M S**  · Submitted to: Dr. Manoj Kumar T.K. · November 2026
 
 ---
 
