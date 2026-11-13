@@ -13,14 +13,15 @@ Author: **Suryakiran M S**  · Submitted to: Dr. Manoj Kumar T.K. · November 20
 
 ## What this project asks
 
-If the government wants to give every child an education through its own schools, can it do that today?
-For **every 100 m populated cell in India** (140 million cells) and every **Government and Aided school**
-(1.07 million schools) the project measures two different problems:
+The main question of this project is whether the government can give education to every child today through its own schools.
+For this, **every 100 m populated cell in India** (140 million cells) and every **Government and Aided school**
+(1.07 million schools) are studied, and two different problems are measured:
 
-- **Too far:** no school of the level within the official distance norm
-  (1 km primary, 3 km upper primary, 5 km secondary, 7 km higher secondary).
-- **Too full:** a school is near, but it has too few seats for all the children around it
-  (seats per child, with the E2SFCA method).
+- **Too far:** there is no school of that level within the official distance norm, i.e.
+  1 km for primary, 3 km for upper primary, 5 km for secondary and 7 km for higher secondary.
+- **Too full:** a school is present nearby, but it does not have enough seats for all the children around it
+  (measured as seats per child with the help of the E2SFCA method).
+
 
 India is the big data part; **Kerala** is a detailed case study with the most complete school data.
 
@@ -33,12 +34,15 @@ India is the big data part; **Kerala** is a detailed case study with the most co
 | Seats per child, higher secondary | **0.40** (about 4 seats for 10 children) | 0.82 |
 | Gini of seats per child, primary | 0.60 | 0.61 (lower primary) |
 
-- **Distance hurts primary; capacity hurts higher secondary.** Bihar has the fewest seats (0.56 primary, 0.13 higher secondary).
-- **Most inequality is inside states:** only 9 % of the primary-level inequality (Theil) lies between states; at higher secondary it is 43 %.
-- **Kerala** is close to universal above lower primary; the gap is lower primary in the hills (Idukki 44 %, Wayanad 42 % beyond 1 km).
-- **Patterns:** 952 sub-districts in Gi\* hot spots of children beyond 1 km and 606 in cold spots of few seats; K-Means gives 5 area types (silhouette 0.415); FP-Growth shows that seat shortages come together (confidence 0.96, lift 4.0).
-- **411 priority areas** in Kerala (connected 100 m cells beyond the norm with at least 50 children), 360 of them for lower primary.
-- **Big data:** Spark + Sedona ran the India E2SFCA state by state in about 5 hours (17.7 GB of results) on one laptop. For small data plain Python is faster; from Kerala size upwards Spark is about 1.8× faster.
+
+
+**Distance is the main problem at primary level, whereas capacity is the main problem at higher secondary level.** Bihar has the fewest seats (0.56 for primary and 0.13 for higher secondary).
+- **Most of the inequality lies inside the states:** only 9 % of the primary-level inequality (Theil) lies between the states, whereas at higher secondary it is 43 %.
+- **Kerala** is close to universal access above lower primary; the gap is mainly at lower primary in the hill districts (Idukki 44 % and Wayanad 42 % beyond 1 km).
+- **Patterns:** 952 sub-districts are found in Gi\* hot spots of children beyond 1 km and 606 in cold spots of few seats; K-Means gives 5 area types (silhouette 0.415); FP-Growth shows that the seat shortages occur together (confidence 0.96, lift 4.0).
+- **411 priority areas** are identified in Kerala (i.e. connected 100 m cells beyond the norm with at least 50 children), and 360 of them are for lower primary.
+- **Big data:** Spark + Sedona ran the India E2SFCA state by state in about 5 hours (17.7 GB of results) on a single laptop. For small data, plain Python is faster, whereas from Kerala size upwards Spark is found to be about 1.8× faster.
+
 
 The full report is in [`REPORT/School_Access_Report.pdf`](REPORT/School_Access_Report.pdf).
 
@@ -59,14 +63,16 @@ written by notebook 29 (`FINAL COMPLETE DATASET/results/dashboard/school_access_
 
 ## Method in brief
 
-1. **Demand:** WorldPop 2026 population at 100 m, split into school ages, times the share of pupils in Government + Aided schools (UDISE).
-2. **Supply (seats):** teachers × the official pupils-per-teacher norm (RTE, Samagra Shiksha, Kerala Education Rules); higher secondary from the HSCAP and VHSCAP batches. A second run uses the pupils enrolled now.
-3. **Catchment and distance weight:** straight-line distance on the ellipsoid, a Gaussian weight that is 1 at the school and 0 at the norm.
-4. **E2SFCA** (Luo & Qi, 2009): each school's seats are shared among the children around it; each cell adds up the seats it can reach.
-5. **Areas and inequality:** children-weighted results for states, districts, sub-districts, Kerala taluks and local bodies; Gini and Theil (between/within states).
-6. **Patterns:** Getis-Ord Gi\* hot spots, K-Means area types, FP-Growth rules, Kerala priority areas.
-7. **Decision support:** an interactive map dashboard (Streamlit).
-8. **Benchmarks:** Spark against plain Python, by data size and by number of cores.
+
+1. **Demand:** the WorldPop 2026 population at 100 m is split into school ages and multiplied by the share of pupils in Government + Aided schools (UDISE).
+2. **Supply (seats):** the number of seats is calculated as teachers × the official pupils-per-teacher norm (RTE, Samagra Shiksha, Kerala Education Rules); for higher secondary, it is taken from the HSCAP and VHSCAP batches. A second run is also done using the pupils enrolled at present.
+3. **Catchment and distance weight:** the straight-line distance is measured on the ellipsoid, and a Gaussian weight is used which is 1 at the school and 0 at the norm.
+4. **E2SFCA** (Luo & Qi, 2009): the seats of each school are shared among the children around it, and then each cell adds up the seats which it can reach.
+5. **Areas and inequality:** the results are weighted by children and calculated for states, districts, sub-districts, Kerala taluks and local bodies; inequality is measured with Gini and Theil (between/within states).
+6. **Patterns:** Getis-Ord Gi\* hot spots, K-Means area types, FP-Growth rules and Kerala priority areas.
+7. **Decision support:** an interactive map dashboard is built with Streamlit.
+8. **Benchmarks:** Spark is compared with plain Python setup , based on data size and number of cores.
+
 
 ## Repository layout
 
@@ -128,12 +134,13 @@ jupyter lab notebooks/
 
 Run the notebooks in order. Each one downloads or builds what it needs into `data/` and checks its own results.
 
-- **UDISE school file:** download *Basic details of schools* from the India Data Portal and save it as
-  `data/raw/udise_basic_details/basic-details-of-schools.csv` before notebook 10.
-- **Windows:** notebook 15 downloads `winutils.exe` / `hadoop.dll` into `tools/hadoop/`; notebook 29 downloads Leaflet into `tools/leaflet/`.
-- **Google Colab:** upload the repository folder to Google Drive (`My Drive`), open a notebook and run it; the first cell mounts Drive and installs the packages.
-- **Notebook 05** (fire stations, not part of the school analysis) needs a Google Maps key in the environment variable `GOOGLE_MAPS_API_KEY`.
-- **Run time:** Kerala steps take minutes; the India E2SFCA (notebook 26) takes about 5 hours on 6 cores.
+- **UDISE school file:** the *Basic details of schools* file has to be downloaded from the  Data Portal and saved as
+  `data/raw/udise_basic_details/basic-details-of-schools.csv` before running notebook 10.
+- **Windows:** notebook 15 downloads `winutils.exe` / `hadoop.dll` into `tools/hadoop/`, whereas notebook 29 downloads Leaflet into `tools/leaflet/`.
+- **Google Colab:** upload the repository folder to Google Drive (`My Drive`), then open a notebook and run it; the first cell mounts the Drive and installs the required packages.
+- **Notebook 05** (fire stations, which is not a part of the school analysis) needs a Google Maps key in the environment variable `GOOGLE_MAPS_API_KEY`.
+- **Run time:** the Kerala steps take only a few minutes, whereas the India E2SFCA (notebook 26) takes about 5 hours on 6 cores.
+
 
 **Not included because of size:** the raw downloads and the data lake (many GB) and the India school layer
 `FINAL COMPLETE DATASET/schools/india_schools_govt_aided.csv` (309 MB); notebook 10 rebuilds it.
